@@ -34,7 +34,7 @@ public class t extends JFrame{
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textField.getText().length()>0){
-					addNewPlan(textField.getText());
+					addNewPlan(textField.getText(),null,null);
 					if(!isOp)
 						textField.setText("");
 				}
@@ -62,10 +62,12 @@ public class t extends JFrame{
 		setVisible(true);
 	}
 	
-	public static void addNewPlan(String atr){
-		listset.addElement(atr);
+	public static void addNewPlan(String name,String desc,String time){
+		listset.addElement(name);
+		timegroup.addElement(time);
+		descgroup.addElement(desc);
+		
 		System.out.println(listset.get(1));
-		//To-Do use .get to attach the file i wanna get.
 	}
 	public static void RemoveAPlan(){
 		try{
