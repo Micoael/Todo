@@ -1,4 +1,4 @@
-package wanna;
+﻿package wanna;
 
 import java.awt.*;
 
@@ -11,11 +11,13 @@ import java.awt.event.ActionEvent;
 
 public class t extends JFrame{
 	static DefaultListModel listset = new DefaultListModel();
+	static DefaultListModel timegroup = new DefaultListModel();
+	static DefaultListModel descgroup = new DefaultListModel();
 	static JList list = new JList(listset);
 	private JTextField textField;
 	JButton btnAdd = new JButton("ADD ");
 	private final JButton btnRemove = new JButton("REMOVE");
-	boolean isOp=true;
+	boolean isOp=false;
 	private final JScrollPane scrollPane = new JScrollPane();
 	public t() {
 		setBackground(UIManager.getColor("Button.focus"));
@@ -53,7 +55,7 @@ public class t extends JFrame{
 		scrollPane.setBounds(84, 3, 329, 342);
 		
 		getContentPane().add(scrollPane);
-		list.setFont(new Font("等线", Font.BOLD, 23));
+		list.setFont(new Font("绛夌嚎", Font.BOLD, 23));
 		scrollPane.setViewportView(list);
 		list.setValueIsAdjusting(true);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -62,6 +64,8 @@ public class t extends JFrame{
 	
 	public static void addNewPlan(String atr){
 		listset.addElement(atr);
+		System.out.println(listset.get(1));
+		//To-Do use .get to attach the file i wanna get.
 	}
 	public static void RemoveAPlan(){
 		try{
