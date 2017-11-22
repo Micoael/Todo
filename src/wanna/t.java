@@ -67,7 +67,7 @@ public class t extends JFrame{
 		timegroup.addElement(time);
 		descgroup.addElement(desc);
 		
-		System.out.println(listset.get(1));
+		//System.out.println(listset.get(1));
 	}
 	public static void RemoveAPlan(){
 		try{
@@ -78,6 +78,9 @@ public class t extends JFrame{
 			
 		}catch(ArrayIndexOutOfBoundsException ee){
 			ee.printStackTrace();
+			System.err.println("You suck guy! Why not looking at \n"
+					+ "it before you click remove? "
+					+ "An error occoured.");
 			
 		}
 	}
