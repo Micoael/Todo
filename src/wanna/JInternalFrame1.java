@@ -11,8 +11,10 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 	JDesktopPane desktopPane;
 	int count = 1;
 	//a constructor.
-	public JInternalFrame1() {
+	public JInternalFrame1() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		
 		super("JInternalFrame1");
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		Container contentPane = this.getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
@@ -49,15 +51,33 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
-		addNewList("hi");
+		try {
+			addNewList("hi");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	/**
 	* This method is a add method and it could add a new frame in the JFrame.
 	*Usage: addNewJList
+	 * @throws UnsupportedLookAndFeelException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	*
 	**/
-	public void addNewList(String titlename){
-		
+	public void addNewList(String titlename) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		JInternalFrame inframe = new JInternalFrame(titlename, true, true, true, true);
 
 		inframe.setLocation(20, 20);
@@ -125,7 +145,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		new JInternalFrame1();
 	}
 }
