@@ -4,6 +4,9 @@ import javax.swing.GroupLayout.Alignment;
 
 import java.awt.event.*;
 import java.awt.*;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class JInternalFrame1 extends JFrame implements ActionListener {
 	JTextField Tplan;
@@ -16,14 +19,14 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		super("JInternalFrame1");
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		Container contentPane = this.getContentPane();
-		contentPane.setLayout(new BorderLayout());
 
-		JButton b = new JButton("Add an new plan");
+		JButton b = new JButton("Add");
 		b.addActionListener(this);
-		contentPane.add(b, BorderLayout.SOUTH);
+		
+		JScrollPane scrollPane = new JScrollPane();
 		
 		desktopPane = new JDesktopPane();
-		contentPane.add(desktopPane);
+		scrollPane.setViewportView(desktopPane);
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(
 			gl_desktopPane.createParallelGroup(Alignment.LEADING)
@@ -34,8 +37,25 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 				.addGap(0, 275, Short.MAX_VALUE)
 		);
 		desktopPane.setLayout(gl_desktopPane);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(6)
+					.addComponent(b, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(b))
+		);
+		getContentPane().setLayout(groupLayout);
 
-		setSize(350, 350);
+		setSize(583, 463);
 		show();
 
 		addWindowListener(new WindowAdapter() {
@@ -77,13 +97,15 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 	*
 	**/
 	public void addNewList(String titlename) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		JInternalFrame inframe = new JInternalFrame(titlename, true, true, true, true);
 
 		inframe.setLocation(20, 20);
-		
-		inframe.setSize(200, 200);
+		setMinimumSize(new Dimension(20,20));
+		inframe.setSize(274, 187);
 		inframe.setVisible(true);
+		
 		Tplan=new JTextField();
 		Tdesc=new JTextField();
 		JLabel lbPlan=new JLabel("Plan");
@@ -100,8 +122,8 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		Tdesc.setBounds(48, 52, 188, 37);
 		JButton btnE = new JButton("\u221A / e");
 		btnE.setBounds(84, 102, 88, 27);
-		
-		
+		inframe.setMaximizable(false);
+		//inframe.setClosable(false);
 		
 		
 		
@@ -130,7 +152,26 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 				inframe.setTitle(Tplan.getText());
 			}
 		});
-		
+		inframe.addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameIconified(InternalFrameEvent e) {
+				try {
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InstantiationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UnsupportedLookAndFeelException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		
 		
