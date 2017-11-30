@@ -100,7 +100,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		JInternalFrame inframe = new JInternalFrame(titlename, true, true, true, true);
-
+		
 		inframe.setLocation(20, 20);
 		setMinimumSize(new Dimension(20,20));
 		inframe.setSize(274, 187);
@@ -110,7 +110,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		Tdesc=new JTextField();
 		JLabel lbPlan=new JLabel("Plan");
 		JLabel lbDesc=new JLabel("Descs");
-		
+		inframe.setResizable(false);
 		
 		
 		
@@ -136,10 +136,14 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 					Tdesc.setEnabled(false);
 					Tplan.setEnabled(false);
 					inframe.setTitle(Tplan.getText()+" - "+Tdesc.getText().substring(0,2)+" ...");
+					//setUndecorated(true);
+					inframe.setSize(200,100);
 				}else{
 					Tdesc.setEnabled(true);
 					Tplan.setEnabled(true);
+					
 					inframe.setTitle(Tplan.getText()+" - "+Tdesc.getText().substring(0,2)+" ...");
+					//setUndecorated(true);
 				}
 				
 				
@@ -183,7 +187,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		inframe.getContentPane().add(btnE);
 		
 		desktopPane.add(inframe);
-
+		
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
