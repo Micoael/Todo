@@ -1,105 +1,24 @@
 package wanna;
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
 
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import java.awt.Window.Type;
 
-public class JInternalFrame1 extends JFrame implements ActionListener {
+public class gui extends JFrame{
 	JTextField Tplan;
 	JTextField Tdesc;
 	JDesktopPane desktopPane;
 	int count = 1;
 	String code;
-	//a constructor.
-	public JInternalFrame1() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		super("JInternalFrame1");
-		setUndecorated(false);
-		setType(Type.UTILITY);
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		Container contentPane = this.getContentPane();
-		
-		JScrollPane scrollPane = new JScrollPane();
-		
-		desktopPane = new JDesktopPane();
-		scrollPane.setViewportView(desktopPane);
-		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane.setHorizontalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 559, Short.MAX_VALUE)
-		);
-		gl_desktopPane.setVerticalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 374, Short.MAX_VALUE)
-		);
-		desktopPane.setLayout(gl_desktopPane);
-		
-				JButton b = new JButton("Add");
-				b.addActionListener(this);
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(b, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(b))
-		);
-		getContentPane().setLayout(groupLayout);
-
-		setSize(483, 658);
-		show();
-
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-      		//ToDo: Write the logs into the databank.
-				System.exit(0);
-			}
-		});
-	}
-
-	/*
-	 * 产生一个可关闭、可改变大小、具有标题、可最大化与最小化的Internal Frame.
-	 */
-	public void actionPerformed(ActionEvent e) {
-		
-		try {
-			addNewList("hi");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
-	/**
-	* This method is a add method and it could add a new frame in the JFrame.
-	*Usage: addNewJList
-	 * @throws UnsupportedLookAndFeelException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
-	*
-	**/
-	public void addNewList(String titlename) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+	
+	public gui() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		/**
 		 * SETS
 		 */
@@ -149,7 +68,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 					textPlan.setText(code);
 					Tdesc.setVisible(false);
 					Tplan.setVisible(false);
-					System.out.println("[CONSOLE]"+Tdesc.getText());
+					
 					inframe1.setTitle(Tplan.getText()+" - "+Tdesc.getText());
 					textPlan.setVisible(true);
 					
@@ -189,13 +108,10 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		});
 		Tdesc.addFocusListener(new FocusAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
+			public void focusLost(FocusEvent e) {
 				Tdesc.setText("");
 			}
 		});
 	}
-	
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		new JInternalFrame1();
-	}
+
 }
