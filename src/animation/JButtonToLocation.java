@@ -21,13 +21,13 @@ public class JButtonToLocation extends JFrame implements Runnable{
 	
 	
 	
-	public void JbtnToLocation(JButton jbtn,int destX,int destY,int speed) throws InterruptedException{
+	public void JbtnToLocation(JButton jbtn,int destX,int destY) throws InterruptedException{
 		int btnX=jbtn.getX();
 		int btnY=jbtn.getY();
 		if(btnX-destX>0){
 			if(btnY-destY>0){
 				while(btnY-destY!=0){
-					jbtn.setLocation(jbtn.getX(), jbtn.getY()-speed*20);
+					jbtn.setLocation(jbtn.getX(), jbtn.getY()-1);
 					btnY=jbtn.getY();
 					
 					//update(this.getGraphics());
@@ -79,6 +79,8 @@ public class JButtonToLocation extends JFrame implements Runnable{
 				btnX=jbtn.getX();
 			}
 		}
+		System.out.println(Thread.getAllStackTraces());
+		System.exit(1);
 	}
 	public static void main(String[] args) {
 		new JButtonToLocation().run();

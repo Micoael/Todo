@@ -14,6 +14,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 	JTextField Tdesc;
 	JDesktopPane desktopPane;
 	int count = 1;
+	String code;
 	//a constructor.
 	public JInternalFrame1() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		
@@ -42,9 +43,10 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(b, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(b, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -56,7 +58,7 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		);
 		getContentPane().setLayout(groupLayout);
 
-		setSize(583, 463);
+		setSize(483, 658);
 		show();
 
 		addWindowListener(new WindowAdapter() {
@@ -98,61 +100,79 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 	*
 	**/
 	public void addNewList(String titlename) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
-		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		/**
+		 * SETS
+		 */
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		JInternalFrame inframe = new JInternalFrame("hi", true, true, true, true);
-		JEditorPane textPlan = new JEditorPane();
-		inframe.setLocation(20, 20);
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		JInternalFrame inframe1 = new JInternalFrame("\u65B0\u5EFA", true, true, true, true);
+		inframe1.setLocation(20, 20);
 		setMinimumSize(new Dimension(20,20));
-		inframe.setSize(298, 243);
-		inframe.setVisible(true);
-		textPlan.setVisible(false);
-		Tplan=new JTextField();
-		Tplan.setForeground(Color.BLACK);
+		inframe1.setSize(272, 173);
+		inframe1.setVisible(true);
+		JButton btnE = new JButton("\u221A");
+		btnE.setBounds(105, 0, 40, 27);
+		inframe1.setMaximizable(false);
 		Tdesc=new JTextField();
-		JLabel lbPlan=new JLabel("\u8BA1\u5212");
-		JLabel lbDesc=new JLabel("\u63CF\u8FF0");
+		Tdesc.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		Tdesc.setBounds(16, 86, 227, 35);
+		inframe1.getContentPane().add(Tdesc);
+		Tdesc.setText("\u5728\u8FD9\u91CC\u8F93\u5165\u8BA1\u5212\u63CF\u8FF0");
+		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		JLabel textPlan = new JLabel();
+		textPlan.setBounds(6, 34, 251, 87);
+		inframe1.getContentPane().add(textPlan);
+		textPlan.setHorizontalAlignment(SwingConstants.CENTER);
+		textPlan.setVisible(true);
+		desktopPane.add(inframe1);
+		inframe1.getContentPane().setLayout(null);
+		inframe1.getContentPane().add(btnE);
+		Tplan=new JTextField();
+		Tplan.setBounds(16, 39, 227, 35);
+		inframe1.getContentPane().add(Tplan);
+		Tplan.setHorizontalAlignment(SwingConstants.CENTER);
+		Tplan.setText("\u5728\u8FD9\u91CC\u8F93\u5165\u60A8\u7684\u8BA1\u5212");
+		Tplan.setForeground(Color.BLACK);
 		
-		
-		
-		Tplan.setBounds(67, 10, 188, 33);
-		lbPlan.setBounds(26, 10, 41, 30);
-		lbPlan.setFont(new Font("微软雅黑", Font.PLAIN, 17));
-		lbDesc.setBounds(26, 70, 41, 30);
-		lbDesc.setFont(new Font("等线", Font.PLAIN, 17));
-		Tdesc.setBounds(67, 53, 188, 67);
-		JButton btnE = new JButton("\u5B8C\u6210");
-		btnE.setBounds(84, 151, 88, 27);
-		inframe.setMaximizable(false);
-		//inframe.setClosable(false);
-		
-		
-		
-		
-		
+		/*
+		 * Mouse Event
+		 */
 		
 		btnE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				code="<html><p style='text-align: center;'><span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'>"+Tplan.getText()+"</span></strong></span></p><hr/><p style='text-align: center;'>"+Tdesc.getText()+"<span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'></span></strong></span><br/></p><p style='text-align: center;'><br/></p></html>";
 				if(Tdesc.isVisible()&&Tplan.isVisible()){
+					//IS AVALIABLE TO UNAVALIABLE.
+					code="<html><p style='text-align: center;'><span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'>"+Tplan.getText()+"</span></strong></span></p><hr/><p style='text-align: center;'>"+Tdesc.getText()+"<span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'></span></strong></span><br/></p><p style='text-align: center;'><br/></p></html>";
+					textPlan.setText(code);
 					Tdesc.setVisible(false);
 					Tplan.setVisible(false);
-					inframe.setTitle(Tplan.getText()+" - "+Tdesc.getText().substring(0,2)+" ...");
+					
+					inframe1.setTitle(Tplan.getText()+" - "+Tdesc.getText());
 					textPlan.setVisible(true);
-					lbDesc.setVisible(false);
-					lbPlan.setVisible(false);
-					btnE.setText("编辑");
+					
+					btnE.setText("/");
 					//String html = "<html><p>你现在打算"+Tplan.getText+"<span style ='color'+"
 				}else{
+					code="<html><p style='text-align: center;'><span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'>"+Tplan.getText()+"</span></strong></span></p><hr/><p style='text-align: center;'>"+Tdesc.getText()+"<span style='color: rgb(0, 32, 96);'><strong><span style='font-size: 18px;'></span></strong></span><br/></p><p style='text-align: center;'><br/></p></html>";
+					textPlan.setText(code);
 					Tdesc.setVisible(true);
 					Tplan.setVisible(true);
-					inframe.setTitle(Tplan.getText()+" - "+Tdesc.getText().substring(0,2)+" ...");
+					inframe1.setTitle(Tplan.getText()+" - "+Tdesc.getText());
 					textPlan.setVisible(false);
-					lbDesc.setVisible(true);
-					lbPlan.setVisible(true);
-					btnE.setText("完成");
+					
+					
+					btnE.setText("√");
 				}
 				
+				
+			}
+		});
+		inframe1.addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameIconified(InternalFrameEvent e) {
 				
 			}
 		});
@@ -160,34 +180,19 @@ public class JInternalFrame1 extends JFrame implements ActionListener {
 		Tplan.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				inframe.setTitle(Tplan.getText());
+				inframe1.setTitle(Tplan.getText());
 			}
-		});
-		inframe.addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
-			public void internalFrameIconified(InternalFrameEvent e) {
-				
+			public void focusGained(FocusEvent e) {
+				Tplan.setText("");
 			}
 		});
-		
-		
-		
-		inframe.getContentPane().add(lbPlan);
-		inframe.getContentPane().add(lbDesc);
-		inframe.getContentPane().add(Tplan);
-		inframe.getContentPane().add(Tdesc);
-		inframe.getContentPane().setLayout(null);
-		inframe.getContentPane().add(btnE);
-		
-		
-		textPlan.setEditable(false);
-		textPlan.setText("hidden...");
-		textPlan.setBounds(0, 0, 280, 139);
-		inframe.getContentPane().add(textPlan);
-		
-		
-		desktopPane.add(inframe);
-
+		Tdesc.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				Tdesc.setText("");
+			}
+		});
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
